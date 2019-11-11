@@ -2,7 +2,7 @@
 //  Segmented sieve of Eratosthenes, swift version of example from Kim Walisch.
 //  https://github.com/kimwalisch/primesieve/wiki/Segmented-sieve-of-Eratosthenes
 //
-//  Generates prime up to a given limit.
+//  Generates prime up to a given limit, time about 1s on 3,2 GHz Intel Core i5 with -Ounchecked.
 //  Author 2019 Uwe Falck, public domain.
 //
 import Foundation
@@ -86,7 +86,11 @@ func segmented_sieve(limit: Int) {
 
 let startingPoint = Date()
 
-segmented_sieve(limit: 1000_000_000)
+// Usage: ./"Segmented sieve of Eratosthenes" n
+if let upTo = Int(CommandLine.arguments[1]) {
+        segmented_sieve(limit: upTo)
+} else {
+    segmented_sieve(limit: 1_000_000_000)
+}
 
 print("\(startingPoint.timeIntervalSinceNow * -1) seconds")
-

@@ -25,7 +25,7 @@ func segmented_sieve(limit: Int) {
     var n = 3
     var s = 3
     
-    var sieve = [Bool]();sieve.reserveCapacity(segment_size)
+    var sieve = [Bool]()
     var is_prime = Array(repeating: true, count: sqrtmax + 1 )
     var primes = [Int]()
     var multiples = [Int]()
@@ -87,8 +87,12 @@ func segmented_sieve(limit: Int) {
 let startingPoint = Date()
 
 // Usage: ./"Segmented sieve of Eratosthenes" n
-if let upTo = Int(CommandLine.arguments[1]) {
+if CommandLine.arguments.count >= 2 {
+    if let upTo = Int(CommandLine.arguments[1]) {
         segmented_sieve(limit: upTo)
+    } else {
+        print("Parameter must be a positive number.")
+    }
 } else {
     segmented_sieve(limit: 1_000_000_000)
 }
